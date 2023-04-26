@@ -1,3 +1,3 @@
-gg-poker-project
+Park & Skate
 
-A web-based poker game.
+A website where users can find skateparks near them and leave a review for fellow skaters. 
