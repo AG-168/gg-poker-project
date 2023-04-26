@@ -12,5 +12,6 @@ from models import User
 
 # Views go here!
 
+
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
