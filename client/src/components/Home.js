@@ -9,9 +9,16 @@ function Home () {
         Sign up and leave a review for your fellow skaters.
       </p>
       <nav>
-        <NavLink    to="/member"    className="nav-link">Signup / Login</NavLink>
-        <br></br>
+        
+        <div>
         <NavLink    to="/skateparks"    className="nav-link">Skateparks</NavLink>
+        </div>
+        <div>
+        <NavLink    to="/login"    className="nav-link">Login</NavLink>
+        </div>
+        <div>
+        <NavLink    to="/signup"    className="nav-link">Signup</NavLink>
+        </div>
     </nav>
     </div>
   );
