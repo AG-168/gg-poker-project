@@ -1,23 +1,22 @@
 import React from "react";
 
-function Skateparks () {
+import Skateparkcards from "./Skateparkcards";
 
-    function displaySkateparks() {
-        // display all skateparks
-        
-    }
+function Skateparks ({skateparksdata}) {
 
-    
-    function handleClick() {
-        window.location.assign("/");
-    }
+    const skateparks = skateparksdata.map((skatepark) => {
+        return (<Skateparkcards key={skatepark.id} name={skatepark.name} address={skatepark.address} borough={skatepark.borough} hours={skatepark.hours} />)
+    })
+
+
     
     return (
         <div>
         <h1>Skateparks</h1>
-        <p>Skateparks Page</p>
+
+        <div>{skateparks}</div>
         
-        <button onClick={handleClick}>Back to Home Page</button>
+        
         </div>
     );
 }
