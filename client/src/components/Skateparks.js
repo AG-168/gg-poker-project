@@ -1,6 +1,12 @@
 import React from "react";
 
 function Skateparks () {
+
+    function displaySkateparks() {
+        // display all skateparks
+        
+    }
+
     
     function handleClick() {
         window.location.assign("/");

@@ -36,7 +36,7 @@ class Skatepark(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
     address = db.Column(db.String, nullable=False)
-    city = db.Column(db.String, nullable=False)
+    borough = db.Column(db.String, nullable=False)
     hours = db.Column(db.String)
 
     reviews = db.relationship('Review', back_populates='skatepark')
