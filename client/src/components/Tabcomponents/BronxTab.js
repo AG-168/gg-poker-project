@@ -1,12 +1,16 @@
 import React from "react";
+import Skateparkcard from "./skateparkcard";
 
 function BronxTab ({bronxParks}) {
+
+    const cardDisplay = bronxParks.map((park)=>{
+        return <Skateparkcard key={park.id} name={park.name} address={park.address} borough={park.borough} hours={park.hours}/>
+    })
 
    
   return (
     <div className="BronxTab">
-      <p>Bronx Tab!! Hurray!!</p>
-      
+      {cardDisplay}
     </div>
   );
 };
