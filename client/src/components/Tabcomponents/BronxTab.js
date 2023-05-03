@@ -1,5 +1,5 @@
 import React from "react";
-import Skateparkcard from "./skateparkcard";
+import Skateparkcard from "./SkateparkCard";
 
 function BronxTab ({bronxParks}) {
 

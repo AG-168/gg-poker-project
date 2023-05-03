@@ -1,10 +1,15 @@
 import React from "react";
+import Skateparkcard from "./SkateparkCard";
 
-function QueensTab () {
+function QueensTab ({queensParks}) {
+
+    const cardDisplay = queensParks.map((park)=>{
+        return <Skateparkcard key={park.id} name={park.name} address={park.address} borough={park.borough} hours={park.hours}/>
+    })
+
   return (
     <div className="QueensTab">
-      <p>Queens Tab!! Hurray!!</p>
-      {/* First tab content will go here */}
+      {cardDisplay}
     </div>
   );
 };
