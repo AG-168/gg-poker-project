@@ -26,14 +26,37 @@ if __name__ == '__main__':
         
         print("Starting seed...")
         # Seed code goes here!
-        for i in range(2):
-            user = User(
-                username=fake.user_name(),
-                email=fake.email(),
-            )
-            user.set_password('password')
-            db.session.add(user)
-            db.session.commit()
+        # for i in range(2):
+        #     user = User(
+        #         username=fake.user_name(),
+        #         email=fake.email(),
+        #     )
+        #     user.set_password('password')
+        #     db.session.add(user)
+        #     db.session.commit()
+
+        user = User(
+            username='test',
+            email='test@email.com',
+        )
+        user.set_password('password')
+        db.session.add(user)
+        db.session.commit()
+
+        review1 = Review(
+            review='This is a test review',
+            user_id=1,
+            skatepark_id=1
+        )
+        review2 = Review(
+            review='This is another test review',
+            user_id=1,
+            skatepark_id=1
+        )
+
+        db.session.add_all([review1, review2])
+        db.session.commit()
+    
 
         
         skatepark1 = Skatepark(
@@ -201,7 +224,7 @@ if __name__ == '__main__':
             name="Andy Kessler Skate Park",
             address="Riverside Park near 108th Street and Riverside Drive, on the lower level",
             borough='Manhattan',
-            hours='The street plaza section is open daily from 6:00 a.m. to 1:00 a.m. The bowl is open seasonally from June to September. Bowl hours are 3:00 p.m. to 7:00 p.m. when public schools are in session and 11:00 a.m. to 7:00 p.m. when public schools are in summer recess. The bowl is closed on Tuesdays and Wednesdays.'
+            hours='6:00 a.m. to 1:00 a.m.'
         )
 
         skatepark25 = Skatepark(

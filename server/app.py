@@ -18,7 +18,15 @@ class SkateparkList(Resource):
 
 api.add_resource(SkateparkList, '/api/skateparks')
 
-# Views go here!
+class ReviewById(Resource):
+    def get(self, id):
+        reviews = Review.query.filter(id == Review.skatepark_id).all()
+        reviews_list = [review.to_dict() for review in reviews]
+        return make_response(reviews_list, 200)
+    
+api.add_resource(ReviewById, '/api/reviews/<int:id>')
+
+
 
 
 if __name__ == '__main__':

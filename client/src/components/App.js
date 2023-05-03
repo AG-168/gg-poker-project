@@ -9,6 +9,8 @@ import Signup from './Signup';
 import Login from './Login';
 import Logout from './Logout';
 
+
+
 function App() {
   const [user, setUser] = useState(null);
   const [skateparks, setSkateparks] = useState([]);
