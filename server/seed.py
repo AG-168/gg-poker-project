@@ -36,10 +36,10 @@ if __name__ == '__main__':
         #     db.session.commit()
 
         user = User(
-            username='test',
+            name='test',
             email='test@email.com',
         )
-        user.set_password('password')
+        # user.set_password('password')
         db.session.add(user)
         db.session.commit()
 

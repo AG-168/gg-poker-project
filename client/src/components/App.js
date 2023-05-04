@@ -1,5 +1,5 @@
 import React , {useEffect, useState} from 'react';
-import {Routes, Route} from 'react-router-dom';
+import {Routes, Route, useNavigate} from 'react-router-dom';
 import '../App.css';
 
 import Home from './Home';
@@ -8,11 +8,14 @@ import Skateparks from './Skateparks';
 import Signup from './Signup';
 import Login from './Login';
 import Logout from './Logout';
+import Authentication from './Authentication';
 
 
 
 function App() {
   const [user, setUser] = useState(null);
+  const navigate = useNavigate();
+
   const [skateparks, setSkateparks] = useState([]);
   
   useEffect(() => {
@@ -24,18 +27,35 @@ function App() {
       })
   }, [])
 
+  useEffect(() => {
+    fetchUser()
+  },[])
+
+  const fetchUser = () => {
+    fetch('/authorized')
+    .then(res => {
+      if(res.ok){
+        res.json().then(user => setUser(user))
+      }else {
+        setUser(null)
+      }
+    })
+}
+
+  const updateUser = (user) => setUser(user)
 
 
 
   return (
     <div className="App">
-      <Navbar/>
+      <Navbar updateUser={updateUser}/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/skateparks" element={<Skateparks skateparksdata={skateparks}/>}  />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/logout" element={<Logout />} />
+        <Route path="/authentication" element={<Authentication updateUser={updateUser} />} />
         <Route path="*" element={<Home />} />
       </Routes>
     </div>
