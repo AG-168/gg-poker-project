@@ -12,6 +12,7 @@ from models import User, Skatepark, Review
 
 app.secret_key = b'\xe2f\x02\xceW\xbc/<\x8b\xb3\xe9\x15\x03\x18\xd5I'
 
+
 class SkateparkList(Resource):
     def get(self):
         skateparks = Skatepark.query.all()
@@ -66,17 +67,15 @@ api.add_resource(Signup, '/signup')
 
 class Login(Resource):
     def post(self):
-        try:
-            user = User.query.filter_by(name=request.get_json()['name']).first()
-            if user.authenticate(request.get_json()['password']):
-                
-                session['user_id'] = user.id
-                response = make_response(
-                    user.to_dict(),
-                    200
-                )
-                return response
-        except:
+        user = User.query.filter_by(name=request.get_json()['name']).first()
+        if user.authenticate(request.get_json()['password']):
+            session['user_id'] = user.id
+            response = make_response(
+                user.to_dict(),
+                200
+            )
+            return response
+        else:
             abort(401, "Incorrect Username or Password")
 
 api.add_resource(Login, '/login')

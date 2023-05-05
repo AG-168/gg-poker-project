@@ -5,8 +5,6 @@ import '../App.css';
 import Home from './Home';
 import Navbar from './Navbar';
 import Skateparks from './Skateparks';
-import Signup from './Signup';
-import Login from './Login';
 import Logout from './Logout';
 import Authentication from './Authentication';
 
@@ -27,7 +25,7 @@ function App() {
       })
   }, [])
 
-  const updateUser = (user) => setUser(user)
+  
 
   useEffect(() => {
     fetchUser()
@@ -37,12 +35,15 @@ function App() {
     fetch('/authorized')
     .then(res => {
       if(res.ok){
-        res.json().then(user => setUser(user))
+        res.json().then(data => {setUser(data) 
+        })
       }else {
         setUser(null)
       }
     })
 }
+
+const updateUser = (user) => setUser(user)
 
   
 
@@ -54,8 +55,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/skateparks" element={<Skateparks skateparksdata={skateparks}/>}  />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login />} />
         <Route path="/logout" element={<Logout />} />
         <Route path="/authentication" element={<Authentication updateUser={updateUser} />} />
         <Route path="*" element={<Home />} />

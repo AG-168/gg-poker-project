@@ -36,7 +36,7 @@ function Authentication({updateUser}) {
             if(res.ok){
                 res.json().then(user => {
                     updateUser(user)
-                    navigate('/')
+                    navigate('/skateparks')
                 })
             }
             else {
