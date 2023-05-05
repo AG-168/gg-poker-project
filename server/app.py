@@ -27,6 +27,17 @@ class ReviewById(Resource):
         reviews_list = [review.to_dict() for review in reviews]
         return make_response(reviews_list, 200)
     
+    def post(self, id):
+        form_json = request.get_json()
+        new_review = Review(
+            review=form_json['review'],
+            user_id=session['user_id'],
+            skatepark_id=id
+        )
+        db.session.add(new_review)
+        db.session.commit()
+        return make_response(new_review.to_dict(), 201)
+    
 api.add_resource(ReviewById, '/api/reviews/<int:id>')
 
 class Users(Resource):

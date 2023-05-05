@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import ReviewCard from "./ReviewCard";
+import ReviewWrite from "./ReviewWrite";
 
 
 function Reviews ({skareparkId}) {
@@ -19,6 +20,7 @@ function Reviews ({skareparkId}) {
         <div>
         <p>Skatepark ID:{skareparkId}</p>
         <ReviewCard reviewData={reviews}/>
+        <ReviewWrite skateparkId={skareparkId} setReviews={setReviews} reviews={reviews}/>
         </div>
     );
 }
