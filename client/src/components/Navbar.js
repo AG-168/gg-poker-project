@@ -7,7 +7,6 @@ function NavBar ({updateUser}) {
     const navigate = useNavigate();
 
     const handleLogout = () => {
-    
         fetch('/logout',{
           method:'DELETE'
         })

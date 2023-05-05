@@ -7,6 +7,7 @@ import { Form } from "react-bootstrap"
 
 function Authentication({updateUser}) {
     const [signUp, setSignUp] = useState(false)
+    const [error, setError] = useState(false)
     const navigate = useNavigate()
   
     const handleClick = () => setSignUp((signUp) => !signUp)
@@ -19,29 +20,36 @@ function Authentication({updateUser}) {
     const formik = useFormik({
       initialValues:{
         name:'',
-        email:''
+        email:'',
+        password:''
       },
       validationSchema:formSchema,
       onSubmit:(values) =>{
-        fetch(signUp?'/users':'/login',{
+        fetch(signUp?'/signup':'/login',{
           method:"POST",
           headers:{
             "Content-Type":"application/json"
           },
           body: JSON.stringify(values)
         })
-        .then(res => res.json())
-        .then(user => {
-          updateUser(user)
-          navigate('/')
+        .then(res => {
+            if(res.ok){
+                res.json().then(user => {
+                    updateUser(user)
+                    navigate('/')
+                })
+            }
+            else {
+                res.json().then(error => setError(error.message))
+            }
         })
       }
-  
     })
    
       return (
           <> 
           {Object.values(formik.errors).map(error => <h2 style={{color:'red'}}> {error}</h2>)}
+            {error&&<h2 style={{color:'red'}}>{error}</h2>}
           <h2>Please Log in or Sign up!</h2>
           <h2>{signUp?'Already a member?':'Not a member?'}</h2>
           <button onClick={handleClick}>{signUp?'Log In!':'Register now!'}</button>
@@ -50,6 +58,10 @@ function Authentication({updateUser}) {
             Username
             </label>
           <input type='text' name='name' value={formik.values.name} onChange={formik.handleChange} />
+          <label>
+           Password
+           </label>
+           <input type='password' name='password' value={formik.values.password} onChange={formik.handleChange} />
           {signUp&&(
             <>
             <label>

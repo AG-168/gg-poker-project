@@ -38,6 +38,7 @@ if __name__ == '__main__':
         user = User(
             name='test',
             email='test@email.com',
+            password_hash='password'
         )
         # user.set_password('password')
         db.session.add(user)

@@ -23,7 +23,7 @@ class User(db.Model, SerializerMixin):
     @hybrid_property
     def password_hash(self):
         return self._password_hash
-
+        
 
     @password_hash.setter
     def password_hash(self, password):
@@ -56,7 +56,7 @@ class Skatepark(db.Model, SerializerMixin):
     def __repr__(self):
         return f'<Skatepark {self.name}>'
     
-    
+
 class Review(db.Model, SerializerMixin):
     __tablename__ = 'reviews'
 

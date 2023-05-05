@@ -27,6 +27,8 @@ function App() {
       })
   }, [])
 
+  const updateUser = (user) => setUser(user)
+
   useEffect(() => {
     fetchUser()
   },[])
@@ -42,7 +44,7 @@ function App() {
     })
 }
 
-  const updateUser = (user) => setUser(user)
+  
 
 
 

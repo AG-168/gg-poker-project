@@ -47,15 +47,37 @@ class Users(Resource):
     
 api.add_resource(Users, '/users')
 
-class Login(Resource):
+class Signup(Resource):
     def post(self):
-        user = User.query.filter_by(name=request.get_json()['name']).first()
-        session['user_id'] = user.id
+        form_json = request.get_json()
+        new_user = User(name=form_json['name'], email=form_json['email'])
+      
+        new_user.password_hash = form_json['password']
+
+        db.session.add(new_user)
+        db.session.commit()
+
         response = make_response(
-            user.to_dict(),
-            200
+            new_user.to_dict(),
+            201
         )
         return response
+api.add_resource(Signup, '/signup')
+
+class Login(Resource):
+    def post(self):
+        try:
+            user = User.query.filter_by(name=request.get_json()['name']).first()
+            if user.authenticate(request.get_json()['password']):
+                
+                session['user_id'] = user.id
+                response = make_response(
+                    user.to_dict(),
+                    200
+                )
+                return response
+        except:
+            abort(401, "Incorrect Username or Password")
 
 api.add_resource(Login, '/login')
 
