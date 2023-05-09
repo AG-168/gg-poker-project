@@ -12,7 +12,7 @@ function Reviews ({skareparkId}) {
             .then(res => res.json())
             .then(data => {
                 setReviews(data);
-                console.log(data)
+                // console.log(data)
             })
     }, [])
 
@@ -20,6 +20,7 @@ function Reviews ({skareparkId}) {
         <div>
         <p>Skatepark ID:{skareparkId}</p>
         <ReviewCard reviewData={reviews}/>
+        <br></br>
         <ReviewWrite skateparkId={skareparkId} setReviews={setReviews} reviews={reviews}/>
         </div>
     );

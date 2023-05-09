@@ -11,7 +11,7 @@ function ReviewWrite ({skateparkId, setReviews, reviews}) {
             review: ""
         },
         onSubmit: values => {
-            console.log(values)
+            // console.log(values)
             fetch(`/api/reviews/${skateparkId}`, {
                 method: "POST",
                 headers: {
@@ -21,7 +21,7 @@ function ReviewWrite ({skateparkId, setReviews, reviews}) {
             })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
+                // console.log(data)
                 setReviews([...reviews, data])
             }
             )
@@ -30,7 +30,7 @@ function ReviewWrite ({skateparkId, setReviews, reviews}) {
 
     return (
         <Form onSubmit={formik.handleSubmit}>
-            <label>Write a review!</label>
+            <label>Write a review below!</label>
             <br></br>
             <input type="text" name="review" placeholder="write review here!" value={formik.values.review} onChange={formik.handleChange}/>
             <br></br>
